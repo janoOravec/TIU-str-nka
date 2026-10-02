@@ -1,1 +1,1 @@
-# TIU-str-nka
+# TIU-stranka
