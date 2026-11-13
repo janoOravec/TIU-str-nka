@@ -1,3 +1,31 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moja stránka</title>
+
+<style>
+  #tlacidloKlik {
+    font-size: 28px;
+    padding: 20px 40px;
+    border-radius: 40px;
+    touch-action: manipulation;
+  }
+
+  #pocet {
+    font-size: 48px;
+    font-weight: bold;
+  }
+
+  #sprava {
+    font-size: 24px;
+    font-weight: bold;
+  }
+</style>
+</head>
+
+<body>
 
 <h1 id="nadpis">Moja stránka</h1>
 
@@ -27,20 +55,23 @@ const info = document.querySelector('#info');
 
 let pocet = 0;
 let spustene = false;
+let koniec = false;
 
 tlacidloKlik.addEventListener('click', () => {
+
+  if (koniec) return;
+
   if (!spustene) {
     spustene = true;
 
     setTimeout(() => {
+      koniec = true;
       tlacidloKlik.disabled = true;
-      info.textContent = 'Čas vypršal. Obnov stránku a hraj znova!';
+      info.textContent = 'Čas vypršal! Obnov stránku a hraj znova.';
     }, 10000);
   }
 
-  if (tlacidloKlik.disabled) return;
-
-  pocet = pocet + 1;
+  pocet++;
   vypis.textContent = pocet;
 
   if (pocet >= 70) {
@@ -50,28 +81,9 @@ tlacidloKlik.addEventListener('click', () => {
   } else {
     sprava.textContent = 'Slimák';
   }
+
 });
 </script>
 
-<style>
-#tlacidloNadpis {
-  padding: 10px 20px;
-}
-
-#tlacidloKlik {
-  font-size: 28px;
-  padding: 20px 40px;
-  border-radius: 40px;
-  touch-action: manipulation;
-}
-
-#pocet {
-  font-size: 48px;
-  font-weight: bold;
-}
-
-#sprava {
-  font-size: 24px;
-  font-weight: bold;
-}
-</style>
+</body>
+</html>
