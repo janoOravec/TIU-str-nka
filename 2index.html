@@ -1,0 +1,77 @@
+
+<h1 id="nadpis">Moja stránka</h1>
+
+<button id="tlacidloNadpis">Zmeň nadpis</button>
+
+<h1>Klikačka</h1>
+
+<p id="info">Koľko klikov stihneš za 10 sekúnd?</p>
+
+<button id="tlacidloKlik">Klikaj</button>
+
+<p>Kliky: <span id="pocet">0</span></p>
+<p id="sprava"></p>
+
+<script>
+const tlacidloNadpis = document.querySelector('#tlacidloNadpis');
+const nadpis = document.querySelector('#nadpis');
+
+tlacidloNadpis.addEventListener('click', () => {
+  nadpis.textContent = 'Nový nadpis!';
+});
+
+const tlacidloKlik = document.querySelector('#tlacidloKlik');
+const vypis = document.querySelector('#pocet');
+const sprava = document.querySelector('#sprava');
+const info = document.querySelector('#info');
+
+let pocet = 0;
+let spustene = false;
+
+tlacidloKlik.addEventListener('click', () => {
+  if (!spustene) {
+    spustene = true;
+
+    setTimeout(() => {
+      tlacidloKlik.disabled = true;
+      info.textContent = 'Čas vypršal. Obnov stránku a hraj znova!';
+    }, 10000);
+  }
+
+  if (tlacidloKlik.disabled) return;
+
+  pocet = pocet + 1;
+  vypis.textContent = pocet;
+
+  if (pocet >= 70) {
+    sprava.textContent = 'Legenda';
+  } else if (pocet >= 40) {
+    sprava.textContent = 'Raketa';
+  } else {
+    sprava.textContent = 'Slimák';
+  }
+});
+</script>
+
+<style>
+#tlacidloNadpis {
+  padding: 10px 20px;
+}
+
+#tlacidloKlik {
+  font-size: 28px;
+  padding: 20px 40px;
+  border-radius: 40px;
+  touch-action: manipulation;
+}
+
+#pocet {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+#sprava {
+  font-size: 24px;
+  font-weight: bold;
+}
+</style>
